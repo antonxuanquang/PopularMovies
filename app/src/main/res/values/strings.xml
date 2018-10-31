@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Popular Movies</string>
+    <string name="error_load_movie_list">An error has occured. Please try to load the movie list again!!</string>
+    <string name="title">Title: </string>
+    <string name="rate">Average Rating: </string>
+    <string name="release_date">Release Date: </string>
+    <string name="overview">Overview: </string>
+    <string name="popular">Popular</string>
+    <string name="top_rated">Top Rated</string>
+    <string name="vote_count">Vote Count</string>
+    <string name="poster_description">Poster Image</string>
+    <string name="poster_image">Poster Image</string>
+    <string name="mark_as_favorite">MARK AS FAVORITE</string>
+    <string name="trailers">Trailers:</string>
+    <string name="trailer1">Trailer 1</string>
+    <string name="trailer">Trailer</string>
+</resources>
