@@ -26,6 +26,7 @@ class TrailerAdapterViewHolder extends RecyclerView.ViewHolder implements View.O
         playIcon = (ImageView) itemView.findViewById(R.id.trailer_icon);
         playIcon.setOnClickListener(this);
     }
+
     public MovieTrailer getTrailer() {
         return trailer;
     }

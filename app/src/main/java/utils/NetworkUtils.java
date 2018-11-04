@@ -82,4 +82,9 @@ public class NetworkUtils {
                 .appendQueryParameter(StringUtils.YOUTUBE_V_PARAMS, trailer.getKey())
                 .build();
     }
+
+    public static Uri buildReviewUri(String reviewUrl) {
+        return Uri.parse(reviewUrl).buildUpon()
+                .build();
+    }
 }
