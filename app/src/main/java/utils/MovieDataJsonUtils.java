@@ -2,6 +2,7 @@ package utils;
 
 import com.udacity.android.popularmovies.data.Movie;
 import com.udacity.android.popularmovies.data.MovieTrailer;
+import com.udacity.android.popularmovies.tasks.MovieReview;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -29,6 +30,10 @@ public class MovieDataJsonUtils {
     private static final String TRAILER_NAME = "name";
     private static final String TRAILER_SITE = "site";
     private static final String TRAILER_KEY = "key";
+    private static final String REVIEW_ID = "id";
+    private static final String CONTENT = "content";
+    private static final String REVIEW_URL = "url";
+    private static final String AUTHOR = "author";
 
     public static List<Movie> parseMovieList(
             String movieListJSONString
@@ -104,6 +109,36 @@ public class MovieDataJsonUtils {
                 name,
                 site,
                 key
+        );
+    }
+
+    public static List<MovieReview> parseReviewList(String reviewListJson, Integer movieId) throws JSONException {
+        JSONObject dataJSON = new JSONObject(reviewListJson);
+        JSONArray reviewsListJSON = dataJSON.getJSONArray(RESULTS);
+        List<MovieReview> reviewList = new ArrayList<>();
+
+        for(int i = 0; i < reviewsListJSON.length(); i++) {
+            JSONObject reviewJson = reviewsListJSON.getJSONObject(i);
+            MovieReview review = parseReviewJson(reviewJson, movieId);
+            reviewList.add(review);
+        }
+
+        return reviewList;
+    }
+
+    private static MovieReview parseReviewJson(JSONObject reviewJson, Integer movieId) throws JSONException {
+
+        String reviewId = reviewJson.getString(REVIEW_ID);
+        String content = reviewJson.getString(CONTENT);
+        String reviewUrl = reviewJson.getString(REVIEW_URL);
+        String author = reviewJson.getString(AUTHOR);
+
+        return new MovieReview(
+                reviewId,
+                movieId,
+                content,
+                reviewUrl,
+                author
         );
     }
 }

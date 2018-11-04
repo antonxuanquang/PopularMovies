@@ -29,9 +29,13 @@ public class DetailActivityTest {
 
         onView(withId(R.id.img_poster)).check(matches(isDisplayed()));
         onView(withId(R.id.tv_release_date)).check(matches(isDisplayed()));
-        onView(withId(R.id.tv_movie_duration)).check(matches(isDisplayed()));
         onView(withId(R.id.tv_rate)).check(matches(isDisplayed()));
         onView(withId(R.id.btn_add_favorite)).check(matches(isDisplayed()));
+    }
+
+    @Test
+    public void whenClick_shouldOpenYoutubeOrWebBrowserIntent() {
+
     }
 
 }

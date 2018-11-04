@@ -8,25 +8,24 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.udacity.android.popularmovies.R;
-import com.udacity.android.popularmovies.data.MovieTrailer;
 
 import java.util.List;
 
-public class TrailerAdapter extends RecyclerView.Adapter<TrailerAdapterViewHolder> {
+public class ReviewAdapter extends RecyclerView.Adapter {
     private static final int WITHOUT_BRAKE_BAR = 0;
     private static final int WITH_BRAKE_BAR = 1;
+    private List<MovieReview> movieReviews;
     private Context context;
-    private List<MovieTrailer> trailerList;
 
     @NonNull
     @Override
-    public TrailerAdapterViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         context = parent.getContext();
         int layout;
         if (viewType == WITH_BRAKE_BAR) {
-            layout = R.layout.trailer_list_item;
+            layout = R.layout.review_list_item;
         } else {
-            layout = R.layout.trailer_list_item_without_bar;
+            layout = R.layout.review_list_item_without_bar;
         }
         LayoutInflater inflater = LayoutInflater.from(context);
 
@@ -36,17 +35,14 @@ public class TrailerAdapter extends RecyclerView.Adapter<TrailerAdapterViewHolde
     }
 
     @Override
-    public void onBindViewHolder(@NonNull TrailerAdapterViewHolder holder, int position) {
-        MovieTrailer trailer = trailerList.get(position);
-        holder.setTrailer(trailer);
-        holder.setContext(context);
-        holder.getTVTrailerName().setText(trailer.getName());
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
+
     }
 
     @Override
     public int getItemCount() {
-        if (trailerList == null) return 0;
-        return trailerList.size();
+        if (movieReviews == null) return 0;
+        return movieReviews.size();
     }
 
     @Override
@@ -58,8 +54,8 @@ public class TrailerAdapter extends RecyclerView.Adapter<TrailerAdapterViewHolde
         }
     }
 
-    public void setTrailers(List<MovieTrailer> movieTrailers) {
-        this.trailerList = movieTrailers;
+    public void setReviews(List<MovieReview> movieReviews) {
+        this.movieReviews = movieReviews;
         notifyDataSetChanged();
     }
 }

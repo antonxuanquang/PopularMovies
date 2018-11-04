@@ -9,6 +9,8 @@ public class StringUtils {
     public static final String API_KEY_STRING = "api_key";
     public static final String MOVIE_OBJECT_EXTRA = "MovieObject";
     public static final String PAGE = "page";
+    public static final String YOUTUBE_BASE_URL = "http://www.youtube.com/watch";
+    public static final String YOUTUBE_V_PARAMS = "v";
     public static String API_IMAGE_BASE_URL = "http://image.tmdb.org/t/p/w780/";
 
 }

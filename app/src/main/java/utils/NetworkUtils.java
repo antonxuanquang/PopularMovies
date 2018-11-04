@@ -1,6 +1,9 @@
 package utils;
 
 import android.net.Uri;
+import android.support.annotation.Nullable;
+
+import com.udacity.android.popularmovies.data.MovieTrailer;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -10,6 +13,7 @@ import java.net.URL;
 import java.util.Scanner;
 
 public class NetworkUtils {
+
     public static URL buildMovieListURL(String userReference, int page) {
         String basedUrl = StringUtils.API_BASE_URL + userReference;
         Uri buildUri = Uri.parse(basedUrl).buildUpon()
@@ -28,8 +32,18 @@ public class NetworkUtils {
     }
 
     public static URL buildMovieTrailersURL(Integer movieId) {
-        // http://api.themoviedb.org/3/movie/346910/videos?api_key=7f6a5f962527c4d8a72d9d300db2ba2a
-        String baseURL = String.format("%s/%d/videos", StringUtils.API_BASE_URL, movieId);
+        // http://api.themoviedb.org/3/movie/346910/videos?api_key=[API_KEY]
+        return buildURLWithFormatAPI("%s%d/videos", movieId);
+    }
+
+    public static URL buildMovieReviewsURL(Integer movieId) {
+        // http://api.themoviedb.org/3/reviews/346910/videos?api_key=[API_KEY]
+        return buildURLWithFormatAPI("%s%d/reviews", movieId);
+    }
+
+    @Nullable
+    private static URL buildURLWithFormatAPI(String urlFormat, Integer movieId2) {
+        String baseURL = String.format(urlFormat, StringUtils.API_BASE_URL, movieId2);
         Uri buildUri = Uri.parse(baseURL).buildUpon()
                 .appendQueryParameter(StringUtils.API_KEY_STRING, StringUtils.API_KEY)
                 .build();
@@ -62,4 +76,10 @@ public class NetworkUtils {
     }
 
 
+    public static Uri buildYoutubeTrailerUri(MovieTrailer trailer) {
+        String basedUrl = StringUtils.YOUTUBE_BASE_URL;
+        return Uri.parse(basedUrl).buildUpon()
+                .appendQueryParameter(StringUtils.YOUTUBE_V_PARAMS, trailer.getKey())
+                .build();
+    }
 }

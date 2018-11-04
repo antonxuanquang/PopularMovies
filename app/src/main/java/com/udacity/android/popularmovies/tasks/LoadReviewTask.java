@@ -7,7 +7,6 @@ import android.view.View;
 import com.udacity.android.popularmovies.DetailActivity;
 import com.udacity.android.popularmovies.R;
 import com.udacity.android.popularmovies.data.Movie;
-import com.udacity.android.popularmovies.data.MovieTrailer;
 
 import org.json.JSONException;
 
@@ -19,27 +18,27 @@ import utils.EspressoIdlingResource;
 import utils.MovieDataJsonUtils;
 import utils.NetworkUtils;
 
-public class LoadTrailerTask extends AsyncTask<Void, Void, List<MovieTrailer>> {
-    private Movie movie;
-    private DetailActivity detailActivity;
+public class LoadReviewTask extends AsyncTask<Void, Void, List<MovieReview>> {
+    private final DetailActivity detailActivity;
+    private final Movie movie;
 
-    public LoadTrailerTask(DetailActivity detailActivity, Movie movie) {
+    public LoadReviewTask(DetailActivity detailActivity, Movie movie) {
         this.detailActivity = detailActivity;
         this.movie = movie;
     }
 
     @Override
-    protected List<MovieTrailer> doInBackground(Void... voids) {
+    protected List<MovieReview> doInBackground(Void... voids) {
         EspressoIdlingResource.increment(); // App is busy loading new data (for testing only)
 
         Integer movieId = movie.getId();
-        URL api = NetworkUtils.buildMovieTrailersURL(movieId);
+        URL api = NetworkUtils.buildMovieReviewsURL(movieId);
 
         try {
             String jsonResult = NetworkUtils.getResponseFromURL(api);
-            List<MovieTrailer> trailers = MovieDataJsonUtils.parseTrailerList(jsonResult, movieId);
+            List<MovieReview> reviews = MovieDataJsonUtils.parseReviewList(jsonResult, movieId);
             EspressoIdlingResource.decrement();
-            return trailers;
+            return reviews;
         } catch (IOException | JSONException e) {
             e.printStackTrace();
             return null;
@@ -47,15 +46,15 @@ public class LoadTrailerTask extends AsyncTask<Void, Void, List<MovieTrailer>> {
     }
 
     @Override
-    protected void onPostExecute(List<MovieTrailer> movieTrailers) {
-        if (movieTrailers != null) {
-            if (movieTrailers.isEmpty()) {
-                ConstraintLayout trailerView = (ConstraintLayout) detailActivity.findViewById(R.id.trailer_view);
-                trailerView .setVisibility(View.INVISIBLE);
+    protected void onPostExecute(List<MovieReview> movieReviews) {
+        if (movieReviews != null) {
+            if (movieReviews.isEmpty()) {
+                ConstraintLayout reviewView = (ConstraintLayout) detailActivity.findViewById(R.id.review_view);
+                reviewView.setVisibility(View.INVISIBLE);
             } else {
                 detailActivity
-                        .getTrailerAdapter()
-                        .setTrailers(movieTrailers);
+                        .getReviewAdapter()
+                        .setReviews(movieReviews);
             }
         }
     }
