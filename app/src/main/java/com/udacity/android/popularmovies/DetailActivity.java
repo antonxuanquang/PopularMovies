@@ -8,6 +8,8 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 import com.udacity.android.popularmovies.data.Movie;
+import com.udacity.android.popularmovies.tasks.LoadTrailerTask;
+import com.udacity.android.popularmovies.tasks.TrailerAdapter;
 
 import java.text.SimpleDateFormat;
 
@@ -22,7 +24,8 @@ public class DetailActivity extends AppCompatActivity {
     private TextView tvRating;
     private TextView tvReleaseDate;
     private TextView tvOverview;
-    private TextView tvMovieDuration;
+
+    private TrailerAdapter trailerAdapter;
 
 
     @Override
@@ -35,7 +38,7 @@ public class DetailActivity extends AppCompatActivity {
         tvRating = (TextView) findViewById(R.id.tv_rate);
         tvReleaseDate = (TextView) findViewById(R.id.tv_release_date);
         tvOverview = (TextView) findViewById(R.id.tv_overivew);
-        tvMovieDuration = (TextView) findViewById(R.id.tv_movie_duration);
+        trailerAdapter = new TrailerAdapter();
 
         Intent intentStartedDetailActivity = getIntent();
         if (intentStartedDetailActivity != null) {
@@ -55,8 +58,21 @@ public class DetailActivity extends AppCompatActivity {
                 ? movie.getOriginalTitle()
                 : movie.getOriginalTitle() + " (" + movie.getTitle() + ")";
         tvTitle.setText(title);
-        tvRating.setText(movie.getAverageRating().toString());
+        tvRating.setText(String.format("%f/10", movie.getAverageRating()));
         tvReleaseDate.setText(simpleDateFormat.format(movie.getReleaseDate()));
         tvOverview.setText(movie.getOverview());
+        loadTrailers();
+    }
+
+    public TrailerAdapter getTrailerAdapter() {
+        return trailerAdapter;
+    }
+
+    public void setTrailerAdapter(TrailerAdapter trailerAdapter) {
+        this.trailerAdapter = trailerAdapter;
+    }
+
+    private void loadTrailers() {
+        new LoadTrailerTask(this, movie).execute();
     }
 }

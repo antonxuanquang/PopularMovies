@@ -12,6 +12,7 @@
     <string name="poster_image">Poster Image</string>
     <string name="mark_as_favorite">MARK AS FAVORITE</string>
     <string name="trailers">Trailers:</string>
-    <string name="trailer1">Trailer 1</string>
     <string name="trailer">Trailer</string>
+    <string name="text_review">Reviews: </string>
+    <string name="trailer_icon_description">Play Trailer Button</string>
 </resources>

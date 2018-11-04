@@ -5,6 +5,7 @@ import java.util.Date;
 
 public class Movie implements Serializable {
 
+    private Integer id;
     private String title;
     private String posterPath;
     private Double averageRating;
@@ -13,8 +14,8 @@ public class Movie implements Serializable {
     private String originalTitle;
     private Date releaseDate;
     private Integer voteCount;
-
     public Movie(
+            Integer id,
             String title,
             String posterPath,
             Integer voteCount,
@@ -24,6 +25,7 @@ public class Movie implements Serializable {
             String originalTitle,
             Date releaseDate
     ) {
+        this.id = id;
         this.title = title;
         this.posterPath = posterPath;
         this.voteCount = voteCount;
@@ -32,6 +34,14 @@ public class Movie implements Serializable {
         this.overview = overview;
         this.originalTitle = originalTitle;
         this.releaseDate = releaseDate;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getTitle() {

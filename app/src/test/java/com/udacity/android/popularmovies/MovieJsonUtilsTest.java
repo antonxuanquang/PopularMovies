@@ -10,7 +10,6 @@ import org.junit.Test;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
@@ -103,7 +102,7 @@ public class MovieJsonUtilsTest {
     @Test
     @Ignore("Android SDK junit doesn't mock new JSONObject() constructor")
     public void givenJSONString_parse_returnListOfMovieData() throws JSONException, ParseException {
-        List<Movie> movieList = MovieDataJsonUtils.parse(JSON);
+        List<Movie> movieList = MovieDataJsonUtils.parseMovieList(JSON);
 
         assertThat(movieList).containsExactly(graveMovie, samuraiMovie);
     }

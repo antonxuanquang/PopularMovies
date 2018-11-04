@@ -30,12 +30,12 @@ public class LoadMovieTask extends AsyncTask<String, Void, List<Movie>> {
         }
 
         String userReference = userReferences[0];
-        URL api = NetworkUtils.buildURL(userReference, page);
+        URL api = NetworkUtils.buildMovieListURL(userReference, page);
         try {
 
             String jsonResult = NetworkUtils.getResponseFromURL(api);
 
-            List<Movie> movieList = MovieDataJsonUtils.parse(jsonResult);
+            List<Movie> movieList = MovieDataJsonUtils.parseMovieList(jsonResult);
 
             EspressoIdlingResource.decrement(); // Set app as idle (for testing only)
             return movieList;

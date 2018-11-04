@@ -24,7 +24,7 @@ public class NetworkUtilsTest {
     public void givenMostPopularReference_buildURL_shouldReturnCorrectURL() throws MalformedURLException {
         String userReference = StringUtils.MOST_POPULAR;
 
-        URL url = NetworkUtils.buildURL(userReference, 0);
+        URL url = NetworkUtils.buildMovieListURL(userReference, 0);
 
         assertThat(url).isEqualTo(new URL(MOST_POPULAR_URL));
     }
