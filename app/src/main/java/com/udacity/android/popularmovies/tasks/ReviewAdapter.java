@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.udacity.android.popularmovies.R;
+import com.udacity.android.popularmovies.data.MovieReview;
 
 import java.util.List;
 

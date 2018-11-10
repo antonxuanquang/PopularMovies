@@ -7,6 +7,7 @@ import android.view.View;
 import com.udacity.android.popularmovies.DetailActivity;
 import com.udacity.android.popularmovies.R;
 import com.udacity.android.popularmovies.data.Movie;
+import com.udacity.android.popularmovies.data.MovieReview;
 
 import org.json.JSONException;
 

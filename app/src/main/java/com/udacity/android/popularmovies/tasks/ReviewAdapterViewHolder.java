@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.udacity.android.popularmovies.R;
+import com.udacity.android.popularmovies.data.MovieReview;
 
 import utils.NetworkUtils;
 

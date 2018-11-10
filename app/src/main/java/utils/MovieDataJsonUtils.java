@@ -2,7 +2,7 @@ package utils;
 
 import com.udacity.android.popularmovies.data.Movie;
 import com.udacity.android.popularmovies.data.MovieTrailer;
-import com.udacity.android.popularmovies.tasks.MovieReview;
+import com.udacity.android.popularmovies.data.MovieReview;
 
 import org.json.JSONArray;
 import org.json.JSONException;

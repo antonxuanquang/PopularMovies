@@ -1,10 +1,15 @@
 package com.udacity.android.popularmovies.data;
 
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.PrimaryKey;
+
 import java.io.Serializable;
 import java.util.Date;
 
+@Entity(tableName = "movie")
 public class Movie implements Serializable {
 
+    @PrimaryKey
     private Integer id;
     private String title;
     private String posterPath;
@@ -14,6 +19,8 @@ public class Movie implements Serializable {
     private String originalTitle;
     private Date releaseDate;
     private Integer voteCount;
+
+
     public Movie(
             Integer id,
             String title,

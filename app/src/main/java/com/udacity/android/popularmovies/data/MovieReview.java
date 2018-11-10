@@ -1,4 +1,4 @@
-package com.udacity.android.popularmovies.tasks;
+package com.udacity.android.popularmovies.data;
 
 public class MovieReview {
 
