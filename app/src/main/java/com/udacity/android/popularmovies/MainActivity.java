@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -58,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void loadMovie() {
         page++;
+        Log.d(this.getLocalClassName(), String.format("Load Movie with page %d", page));
         new LoadMovieTask(this, page).execute(userReference);
     }
 

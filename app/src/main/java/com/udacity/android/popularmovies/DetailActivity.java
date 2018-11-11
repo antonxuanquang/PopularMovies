@@ -1,24 +1,15 @@
 package com.udacity.android.popularmovies;
 
-import android.arch.lifecycle.Observer;
-import android.arch.lifecycle.ViewModel;
-import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
-import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.squareup.picasso.Picasso;
-import com.udacity.android.popularmovies.data.AddMovieViewModel;
-import com.udacity.android.popularmovies.data.AddMovieViewModelFactory;
 import com.udacity.android.popularmovies.data.AppDatabase;
 import com.udacity.android.popularmovies.data.AppExecutors;
 import com.udacity.android.popularmovies.data.Movie;
@@ -80,25 +71,10 @@ public class DetailActivity extends AppCompatActivity {
         if (intentStartedDetailActivity != null) {
             if (intentStartedDetailActivity.hasExtra(StringUtils.MOVIE_OBJECT_EXTRA)) {
                 movie = (Movie) intentStartedDetailActivity.getSerializableExtra(StringUtils.MOVIE_OBJECT_EXTRA);
-                setupDatabase(movie.getId());
+                mDb = AppDatabase.getInstance(getApplicationContext());
                 setMovieDataToViewComponents();
             }
         }
-    }
-
-    private void setupDatabase(Integer movieId) {
-        mDb = AppDatabase.getInstance(getApplicationContext());
-
-        AddMovieViewModelFactory addMovieViewModelFactory = new AddMovieViewModelFactory(mDb, movieId);
-//        AddMovieViewModel viewModel = ViewModelProviders.of(this, addMovieViewModelFactory)
-//                .get(AddMovieViewModel.class);
-//        viewModel.getMovie().observe(this, new Observer<Movie>() {
-//            @Override
-//            public void onChanged(@Nullable Movie movie) {
-//                viewModel.getMovie().removeObserver(this);
-//                //TODO maybe missing the code to update UI here
-//            }
-//        });
     }
 
     private void setMovieDataToViewComponents() {
@@ -123,9 +99,9 @@ public class DetailActivity extends AppCompatActivity {
             @Override
             public void run() {
                 if (mDb.movieDao().loadMovieById(movieId) == null) {
-                    btnAddFavorite.setText(getString(R.string.unmark_as_favorite));
-                } else {
                     btnAddFavorite.setText(getString(R.string.mark_as_favorite));
+                } else {
+                    btnAddFavorite.setText(getString(R.string.unmark_as_favorite));
                 }
             }
         });
@@ -135,14 +111,12 @@ public class DetailActivity extends AppCompatActivity {
         AppExecutors.getInstance().diskIO().execute(new Runnable() {
             @Override
             public void run() {
-                Log.d("TAG", "click");
                 if (mDb.movieDao().loadMovieById(movie.getId()) == null) {
-                    Log.d("TAG", "not found");
                     mDb.movieDao().insertMovie(movie);
                 } else {
-                    Log.d("TAG", "found");
                     mDb.movieDao().deleteMovie(movie);
                 }
+                setFavoriteBtnWords(movie.getId());
             }
         });
     }
