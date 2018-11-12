@@ -16,4 +16,5 @@
     <string name="text_review">Reviews: </string>
     <string name="trailer_icon_description">Play Trailer Button</string>
     <string name="unmark_as_favorite">UNMARK AS FAVORITE</string>
+    <string name="favorite">Favorite</string>
 </resources>

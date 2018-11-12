@@ -62,4 +62,10 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapterViewHolder> {
     public void resetData() {
         movieList = new ArrayList<>();
     }
+
+    public void setMovies(List<Movie> favoriteMovies) {
+        movieList.clear();
+        movieList.addAll(favoriteMovies);
+        notifyDataSetChanged();
+    }
 }
