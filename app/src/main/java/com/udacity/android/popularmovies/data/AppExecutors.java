@@ -3,9 +3,11 @@ package com.udacity.android.popularmovies.data;
 import android.os.Handler;
 import android.os.Looper;
 import android.support.annotation.NonNull;
+import android.util.Log;
 
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
+import java.util.concurrent.locks.Lock;
 
 public class AppExecutors {
 

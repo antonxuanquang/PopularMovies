@@ -50,22 +50,23 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapterViewHolder> {
         return this.movieList.size();
     }
 
-    public void addMovies(List<Movie> newMovies) {
-        if (this.movieList == null) {
-            this.movieList = new ArrayList<Movie>(newMovies);
-        } else {
-            this.movieList.addAll(newMovies);
+//    public void addMovies(List<Movie> newMovies) {
+//        if (this.movieList == null) {
+//            this.movieList = new ArrayList<Movie>(newMovies);
+//        } else {
+//            this.movieList.addAll(newMovies);
+//        }
+//        notifyDataSetChanged();
+//    }
+//
+//    public void resetData() {
+//        movieList = new ArrayList<>();
+//    }
+
+    public void setMovies(List<Movie> movies) {
+        if(movies != null) {
+            movieList = new ArrayList<>(movies);
+            notifyDataSetChanged();
         }
-        notifyDataSetChanged();
-    }
-
-    public void resetData() {
-        movieList = new ArrayList<>();
-    }
-
-    public void setMovies(List<Movie> favoriteMovies) {
-        movieList.clear();
-        movieList.addAll(favoriteMovies);
-        notifyDataSetChanged();
     }
 }

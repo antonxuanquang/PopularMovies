@@ -13,7 +13,7 @@ import java.util.List;
 @Dao
 public interface MovieDao {
     @Query("SELECT * FROM movie")
-    LiveData<List<Movie>> loadAllMovies();
+    List<Movie> loadAllMovies();
 
     @Insert
     void insertMovie(Movie movie);

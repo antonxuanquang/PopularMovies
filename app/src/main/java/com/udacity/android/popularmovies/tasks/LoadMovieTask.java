@@ -4,6 +4,7 @@ import android.os.AsyncTask;
 
 import com.udacity.android.popularmovies.MainActivity;
 import com.udacity.android.popularmovies.data.Movie;
+import com.udacity.android.popularmovies.data.MovieRepo;
 
 import java.net.URL;
 import java.util.List;
@@ -14,11 +15,9 @@ import utils.NetworkUtils;
 
 public class LoadMovieTask extends AsyncTask<String, Void, List<Movie>> {
 
-    private MainActivity mainActivity;
     private int page;
 
-    public LoadMovieTask(MainActivity mainActivity, int page) {
-        this.mainActivity = mainActivity;
+    public LoadMovieTask(int page) {
         this.page = page;
     }
 
@@ -48,7 +47,7 @@ public class LoadMovieTask extends AsyncTask<String, Void, List<Movie>> {
     @Override
     protected void onPostExecute(List<Movie> movieData) {
         if (movieData != null) {
-            mainActivity.getMovieAdapter().addMovies(movieData);
+            MovieRepo.getInstance().addMovies(movieData);
         }
     }
 }

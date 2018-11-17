@@ -11,6 +11,7 @@ public class StringUtils {
     public static final String PAGE = "page";
     public static final String YOUTUBE_BASE_URL = "http://www.youtube.com/watch";
     public static final String YOUTUBE_V_PARAMS = "v";
+    public static final String FAVORITE = "favorite";
     public static String API_IMAGE_BASE_URL = "http://image.tmdb.org/t/p/w780/";
 
 }
